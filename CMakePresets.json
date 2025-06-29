@@ -1,0 +1,28 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "msvc",
+            "generator": "Visual Studio 17 2022",
+            "binaryDir": "${sourceDir}/build/msvc"
+        },
+        {
+            "name": "clang",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/clang",
+            "environment": {
+                "STD_PATH": "C:/local/llvm-mingw/share/libc++/v1",
+                "STD_MODULE": "std.cppm"
+            }
+        },
+        {
+            "name": "gcc",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/gcc",
+            "environment": {
+                "STD_PATH": "C:/local/mingw64/include/c++/15.1.0/bits",
+                "STD_MODULE": "std.cc"
+            }
+        }
+    ]
+}
