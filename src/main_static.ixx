@@ -1,9 +1,9 @@
 ﻿module;
 
-#define MODULE_ENABLE 1
+#define MODULE_ENABLE 0
 
 #if !MODULE_ENABLE
-#  include "header_only.hpp"
+#  include "static_lib.h"
 #endif
 
 export module main;
@@ -16,7 +16,7 @@ import header_only;
 export int main(int _argc, char* _argv[])
 {
     std::println("module");
-    std::println("header_only: {}", header_only::get_info());
-    header_only::check();
+    std::println("header_only: {}", static_lib::get_info());
+    static_lib::check();
     return 0;
 }

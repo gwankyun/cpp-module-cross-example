@@ -1,16 +1,17 @@
 ﻿set(std_path "$ENV{STD_PATH}")
 set(std_module "$ENV{STD_MODULE}")
 
-if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+set(compiler Clang GNU)
+if(CMAKE_CXX_COMPILER_ID IN_LIST compiler)
   # 定义要执行的子 CMake 脚本路径
   set(sub_cmake_script "cmake/copy-std-module.cmake")
 
   # 使用 execute_process 执行子 CMake 脚本，并传递参数
   execute_process(
       COMMAND ${CMAKE_COMMAND}
-        -DPROJECT_BINARY_DIR=${PROJECT_BINARY_DIR}
-        -DSTD_PATH=${std_path}
-        -DSTD_MODULE=${std_module}
+        -DPROJECT_BINARY_DIR=${PROJECT_BINARY_DIR} # 目標目錄
+        -DSTD_PATH=${std_path}                     # 標準庫目錄
+        -DSTD_MODULE=${std_module}                 # 標準模塊名
         -P ${sub_cmake_script}
       WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
       RESULT_VARIABLE sub_cmake_result
@@ -30,11 +31,11 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
   add_library(std_clang)
   target_sources(std_clang
     PUBLIC FILE_SET CXX_MODULES FILES
-      ${PROJECT_BINARY_DIR}/$ENV{STD_MODULE}
+      ${PROJECT_BINARY_DIR}/${std_module}
   )
   target_include_directories(std_clang
     PRIVATE
-      $ENV{STD_PATH}
+      ${std_path}
   )
   target_compile_options(std_clang
     PRIVATE
@@ -49,11 +50,11 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   add_library(std_gcc)
   target_sources(std_gcc
     PUBLIC FILE_SET CXX_MODULES FILES
-      ${PROJECT_BINARY_DIR}/$ENV{STD_MODULE}
+      ${PROJECT_BINARY_DIR}/${std_module}
   )
   target_include_directories(std_gcc
     PRIVATE
-      $ENV{STD_PATH}
+      ${std_path}
   )
   target_compile_options(std_gcc
     PRIVATE
