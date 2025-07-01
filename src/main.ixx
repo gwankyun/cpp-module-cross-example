@@ -15,8 +15,10 @@ import header_only;
 
 export int main(int _argc, char* _argv[])
 {
+    std::println("_argc: {}", _argc);
     std::println("module");
     std::println("header_only: {}", header_only::get_info());
     header_only::check();
+    header_only::add(1, 2);
     return 0;
 }

@@ -1,22 +1,22 @@
 ﻿module;
 
-#define MODULE_ENABLE 0
+#define USE_MODULE 0
 
-#if !MODULE_ENABLE
+#if !USE_MODULE
 #  include "static_lib.h"
 #endif
 
 export module main;
 import std;
 
-#if MODULE_ENABLE
+#if USE_MODULE
 import header_only;
 #endif
 
 export int main(int _argc, char* _argv[])
 {
     std::println("module");
-    std::println("header_only: {}", static_lib::get_info());
-    static_lib::check();
+    std::println("header_only: {}", header_only::get_info());
+    header_only::check();
     return 0;
 }

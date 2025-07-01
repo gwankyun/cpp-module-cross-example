@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <print>
+#include <source_location>
 
 #ifndef TO_STRING_IMPL
 #  define TO_STRING_IMPL(x) #x
@@ -23,8 +25,20 @@ namespace detail
             std::cout << _message << ": failed" << std::endl;
         }
     }
+
+    template <typename T>
+    inline void dbg(
+        const T& _value, std::string _message, std::source_location _location = std::source_location::current()
+    )
+    {
+        std::println("[{}:{}] {} -> {}", _location.function_name(), _location.line(), _message, _value);
+    }
 } // namespace detail
 
 #ifndef TEST
 #  define TEST(_express) detail::test(_express, TO_STRING(_express))
 #endif // !TEST
+
+#ifndef DBG
+#  define DBG(_value) detail::dbg(_value, TO_STRING(_value), std::source_location::current())
+#endif // !DBG
