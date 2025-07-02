@@ -6,39 +6,77 @@ project(module_cross LANGUAGES CXX)
 
 include(cmake/std.cmake)
 
+add_library(dbg_module)
+block()
+  target_sources(dbg_module
+    PRIVATE
+      src/dbg_macro.h
+      src/dbg_decl.hpp
+      src/dbg.hpp
+    PUBLIC FILE_SET CXX_MODULES FILES # clang要求公開
+      src/dbg.ixx
+  )
+  target_compile_features(dbg_module PRIVATE cxx_std_23)
+endblock()
+
 add_executable(main)
-target_sources(main
-  PRIVATE
-    src/test.hpp
-    src/config.hpp
-    src/header_only_decl.hpp
-    src/header_only.hpp
-  PRIVATE FILE_SET CXX_MODULES FILES
-    src/main.ixx
-    src/header_only.ixx
-)
-target_link_libraries(main
-  PRIVATE
-    std
-)
-target_compile_features(main PRIVATE cxx_std_23)
+block()
+  target_sources(main
+    PRIVATE
+      src/config.hpp
+      src/header_only_decl.hpp
+      src/header_only.hpp
+    PRIVATE FILE_SET CXX_MODULES FILES
+      src/main.ixx
+      src/header_only.ixx
+  )
+  target_link_libraries(main
+    PRIVATE
+      std
+      dbg_module
+  )
+  target_compile_features(main PRIVATE cxx_std_23)
+endblock()
 
 add_library(static_lib)
-target_sources(static_lib
-  PRIVATE
-    src/static_lib.h
-    src/static_lib.cpp
-)
-target_compile_features(static_lib PRIVATE cxx_std_23)
+block()
+  target_sources(static_lib
+    PRIVATE
+      src/static_lib.h
+      src/static_lib.cpp
+  )
+  target_link_libraries(static_lib
+    PRIVATE
+      std
+      dbg_module
+  )
+  target_compile_features(static_lib PRIVATE cxx_std_23)
+endblock()
+
+add_library(static_lib_module)
+block()
+  target_sources(static_lib_module
+    PRIVATE FILE_SET CXX_MODULES FILES
+      src/static_lib.ixx
+  )
+  target_link_libraries(static_lib_module
+    PRIVATE
+      std
+      dbg_module
+  )
+  target_compile_features(static_lib_module PRIVATE cxx_std_23)
+endblock()
 
 add_executable(main_static)
-target_sources(main_static
-  PRIVATE FILE_SET CXX_MODULES FILES
-    src/main_static.ixx
-)
-target_link_libraries(main_static
-  PRIVATE
-    std
-    static_lib
-)
-target_compile_features(main_static PRIVATE cxx_std_23)
+block()
+  target_sources(main_static
+    PRIVATE FILE_SET CXX_MODULES FILES
+      src/main_static.ixx
+  )
+  target_link_libraries(main_static
+    PRIVATE
+      std
+      static_lib
+  )
+  target_compile_features(main_static PRIVATE cxx_std_23)
+endblock()

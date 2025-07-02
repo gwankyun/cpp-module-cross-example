@@ -2,20 +2,16 @@
 
 #include "header_only_decl.hpp"
 
-#if MODULE_ENABLE
+#if MODULE_STD
 import std;
+#endif
+
+#if MODULE_DBG_ENABLE
+import dbg;
 #endif
 
 MODULE_EXPORT namespace header_only
 {
-    MODULE_INLINE void check()
-    {
-        std::vector<int> vec;
-        TEST(vec.empty());
-        vec.push_back(1);
-        TEST(vec.size() == 1);
-    }
-
     MODULE_INLINE std::string get_info()
     {
         return "header_only";

@@ -17,6 +17,6 @@ export int main(int _argc, char* _argv[])
 {
     std::println("module");
     std::println("header_only: {}", header_only::get_info());
-    header_only::check();
+    //header_only::check();
     return 0;
 }
