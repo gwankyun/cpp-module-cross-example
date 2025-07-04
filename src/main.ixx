@@ -1,15 +1,15 @@
 ﻿module;
 
-#define MODULE_ENABLE 1
+#define MODULE 1
 
-#if !MODULE_ENABLE
+#if !MODULE
 #  include "header_only.hpp"
 #endif
 
 export module main;
 import std;
 
-#if MODULE_ENABLE
+#if MODULE
 import header_only;
 #endif
 

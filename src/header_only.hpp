@@ -9,6 +9,7 @@ import std;
 #if MODULE_DBG_ENABLE
 import dbg;
 #endif
+#include "dbg_macro.h"
 
 MODULE_EXPORT namespace header_only
 {

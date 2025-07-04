@@ -1,11 +1,11 @@
 #pragma once
 
-#ifndef MODULE_ENABLE
-#  define MODULE_ENABLE 1
-#endif // !MODULE_ENABLE
+#ifndef MODULE
+#  define MODULE 1
+#endif // !MODULE
 
 #ifndef MODULE_STD
-#  if MODULE_ENABLE
+#  if MODULE
 #    define MODULE_STD 1
 #  else
 #    define MODULE_STD 0
@@ -13,7 +13,7 @@
 #endif // !MODULE_STD
 
 #ifndef MODULE_EXPORT
-#  if MODULE_ENABLE
+#  if MODULE
 #    define MODULE_EXPORT export
 #  else
 #    define MODULE_EXPORT
@@ -21,7 +21,7 @@
 #endif // !MODULE_EXPORT
 
 #ifndef MODULE_INLINE
-#  if MODULE_ENABLE
+#  if MODULE
 #    define MODULE_INLINE
 #  else
 #    define MODULE_INLINE inline

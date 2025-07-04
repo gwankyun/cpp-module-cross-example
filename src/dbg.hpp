@@ -1,6 +1,10 @@
 #pragma once
 #include "dbg_decl.hpp"
 
+#if DBG_MODULE_STD
+import std;
+#endif
+
 DBG_MODULE_EXPORT namespace detail
 {
     template <typename T>

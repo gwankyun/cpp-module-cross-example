@@ -4,6 +4,12 @@ cmake_minimum_required(VERSION 3.28...4.1)
 # 項目名
 project(module_cross LANGUAGES CXX)
 
+set(msvc_options)
+
+list(APPEND msvc_options "/Zc:__cplusplus")
+
+add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:${msvc_options}>")
+
 include(cmake/std.cmake)
 
 add_library(dbg_module)
@@ -16,8 +22,13 @@ block()
     PUBLIC FILE_SET CXX_MODULES FILES # clang要求公開
       src/dbg.ixx
   )
+  target_link_libraries(dbg_module
+    PRIVATE
+      std
+  )
   target_compile_features(dbg_module PRIVATE cxx_std_23)
 endblock()
+
 
 add_executable(main)
 block()
@@ -37,6 +48,7 @@ block()
   )
   target_compile_features(main PRIVATE cxx_std_23)
 endblock()
+
 
 add_library(static_lib)
 block()
