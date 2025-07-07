@@ -28,6 +28,6 @@
 #  endif
 #endif // !MODULE_INLINE
 
-#ifndef MODULE_DBG_ENABLE
-#  define MODULE_DBG_ENABLE 1
-#endif // !MODULE_DBG_ENABLE
+#ifndef MODULE_DBG
+#  define MODULE_DBG 1
+#endif // !MODULE_DBG
