@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-#define MODULE 0
+#define HAS_CPP_MODULES 0
 #define MODULE_INLINE
 #include "config.hpp"
 

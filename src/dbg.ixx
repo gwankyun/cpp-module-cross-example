@@ -9,4 +9,9 @@ export module dbg;
 #endif // DBG_MODULE_EXPORT
 #define DBG_MODULE_EXPORT export
 
+#ifdef HAS_STD_MODULE
+#  undef HAS_STD_MODULE
+#endif // HAS_STD_MODULE
+#define HAS_STD_MODULE 1
+
 #include "dbg.hpp"

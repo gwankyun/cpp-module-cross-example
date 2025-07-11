@@ -1,9 +1,12 @@
 #pragma once
 #include "dbg_decl.hpp"
 
-#if DBG_MODULE_STD
+#if HAS_STD_MODULE
 import std;
-#endif
+#else
+#  include <print>
+#  include <string>
+#endif // HAS_STD_MODULE
 
 DBG_MODULE_EXPORT namespace detail
 {

@@ -2,9 +2,11 @@
 
 #include "header_only_decl.hpp"
 
-#if MODULE_STD
-import std;
-#endif
+
+
+//#if HAS_STD_MODULE
+//import std;
+//#endif
 
 #if MODULE_DBG
 import dbg;
@@ -24,3 +26,10 @@ MODULE_EXPORT namespace header_only
         return _a + _b;
     }
 } // namespace header_only
+
+MODULE_EXPORT_BEGIN
+MODULE_INLINE int subtract(int _a, int _b)
+{
+    return _a - _b;
+}
+MODULE_EXPORT_END
