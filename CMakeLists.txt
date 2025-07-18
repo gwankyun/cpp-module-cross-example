@@ -35,11 +35,21 @@ block()
   target_sources(main
     PRIVATE
       src/config.hpp
-      src/header_only_decl.hpp
-      src/header_only.hpp
+      # src/header_only_decl.hpp
+      # src/header_only.hpp
+      src/header_a.hpp
+      src/header_module_a.hpp
+      src/header_b.hpp
+      src/static_a.h
+      src/static_b.h
+      src/static_a.cpp
+      src/static_b.cpp
     PRIVATE FILE_SET CXX_MODULES FILES
       src/main.ixx
-      src/header_only.ixx
+      # src/header_only.ixx
+      src/module_a.ixx
+      src/module_b.ixx
+      src/header_module_a.ixx
   )
   target_link_libraries(main
     PRIVATE
