@@ -7,7 +7,7 @@
 //#endif
 
 #ifndef HEADER_MODULE_A_USE_MODULE
-#  define HEADER_MODULE_A_USE_MODULE 0
+#  define HEADER_MODULE_A_USE_MODULE 1
 #endif // !HEADER_MODULE_A_USE_MODULE
 
 #ifndef HEADER_MODULE_A_USE_STD_MODULE
@@ -57,6 +57,6 @@ export int main(int _argc, char* _argv[])
     static_b::get_info();
     module_b::get_info();
 
-    header_module_a::get_info();
+    std::print("{}", header_module_a::get_info());
     return 0;
 }

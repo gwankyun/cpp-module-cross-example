@@ -14,6 +14,10 @@ MODULE_EXPORT namespace header_module_a
 {
     MODULE_INLINE std::string get_info()
     {
-        return "header_module_a";
+#if HEADER_MODULE_A_USE_MODULE
+        return "header_module_a: module";
+#else
+        return "header_module_a: header";
+#endif // HEADER_MODULE_A_USE_MODULE
     }
 }

@@ -12,6 +12,7 @@ add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:${msvc_options}>")
 
 include(cmake/std.cmake)
 
+#[[
 add_library(dbg_module)
 block()
   target_sources(dbg_module
@@ -28,7 +29,7 @@ block()
   )
   target_compile_features(dbg_module PRIVATE cxx_std_23)
 endblock()
-
+#]]
 
 add_executable(main)
 block()
@@ -54,12 +55,12 @@ block()
   target_link_libraries(main
     PRIVATE
       std
-      dbg_module
+      ## dbg_module
   )
   target_compile_features(main PRIVATE cxx_std_23)
 endblock()
 
-
+#[[
 add_library(static_lib)
 block()
   target_sources(static_lib
@@ -102,3 +103,4 @@ block()
   )
   target_compile_features(main_static PRIVATE cxx_std_23)
 endblock()
+#]]
