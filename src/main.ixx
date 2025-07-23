@@ -6,20 +6,22 @@
 //#  include "header_only.hpp"
 //#endif
 
-#ifndef HEADER_MODULE_A_USE_MODULE
-#  define HEADER_MODULE_A_USE_MODULE 1
-#endif // !HEADER_MODULE_A_USE_MODULE
+//#ifndef HEADER_MODULE_A_USE_MODULE
+//#  define HEADER_MODULE_A_USE_MODULE 1
+//#endif // !HEADER_MODULE_A_USE_MODULE
 
-#ifndef HEADER_MODULE_A_USE_STD_MODULE
-#  if HEADER_MODULE_A_USE_MODULE
-#    define HEADER_MODULE_A_USE_STD_MODULE 1
-#  endif // HEADER_MODULE_A_USE_MODULE
-#endif   // !HEADER_MODULE_A_USE_STD_MODULE
+//#ifndef HEADER_MODULE_A_USE_STD_MODULE
+//#  if HEADER_MODULE_A_USE_MODULE
+//#    define HEADER_MODULE_A_USE_STD_MODULE 1
+//#  endif // HEADER_MODULE_A_USE_MODULE
+//#endif   // !HEADER_MODULE_A_USE_STD_MODULE
 
 #include "header_a.hpp"
 #include "header_b.hpp"
 #include "static_a.h"
 #include "static_b.h"
+
+#include "header_module_a_config.h"
 
 #if !HEADER_MODULE_A_USE_MODULE
 #  include "header_module_a.hpp"

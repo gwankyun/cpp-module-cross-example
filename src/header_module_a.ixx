@@ -1,10 +1,9 @@
 module;
 
-#define HEADER_MODULE_A_USE_MODULE 1
-
 #include "header_module_a_config.h"
 
 #if !HEADER_MODULE_A_USE_STD_MODULE
+#  include <format>
 #  include <string>
 #endif // !HEADER_MODULE_A_USE_STD_MODULE
 
@@ -14,4 +13,6 @@ export module header_module_a;
 import std;
 #endif // HEADER_MODULE_A_USE_STD_MODULE
 
-#include "header_module_a.hpp"
+#if HEADER_MODULE_A_USE_MODULE
+#  include "header_module_a.hpp"
+#endif // HEADER_MODULE_A_USE_MODULE
